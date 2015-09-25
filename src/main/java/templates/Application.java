@@ -5,13 +5,18 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 import templates.files.pdf.ResumeExportService;
 
 import com.lowagie.text.DocumentException;
 
 public class Application {
+
+	private static Logger logger = Logger
+			.getLogger(Application.class.getName());
 
 	public static void main(String... args) throws InterruptedException,
 			DocumentException, IOException {
@@ -20,41 +25,38 @@ public class Application {
 
 		ResumeExportService exportService = new ResumeExportService();
 
-		ByteArrayOutputStream pdfDocument = exportService
-				.generatePDFDocument(app.getFile("templates/default.html"));
-
-		OutputStream outputStream = new FileOutputStream("hello.pdf");
-		pdfDocument.writeTo(outputStream);
-
 		// Iterate through each templates/*.html file on the classpath.
+		for (File file : app.getTemplates()) {
 
-		// pass that in as the template to template service.
+			// pass that in as the template to template service.
+			ByteArrayOutputStream pdfDocument = exportService
+					.generatePDFDocument(file);
 
-		// write resulting bytes to file in build/templates
-	}
+			OutputStream outputStream = new FileOutputStream(file.getName()
+					.replace("html", "pdf"));
 
-	private String getFile(String fileName) {
-
-		StringBuilder result = new StringBuilder("");
-
-		// Get file from resources folder
-		ClassLoader classLoader = getClass().getClassLoader();
-		File file = new File(classLoader.getResource(fileName).getFile());
-
-		try (Scanner scanner = new Scanner(file)) {
-
-			while (scanner.hasNextLine()) {
-				String line = scanner.nextLine();
-				result.append(line).append("\n");
-			}
-
-			scanner.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
+			// write resulting bytes to file in build/templates
+			pdfDocument.writeTo(outputStream);
 		}
 
-		return result.toString();
-
 	}
+
+	private List<File> getTemplates() {
+		List<File> templates = new ArrayList<>();
+		File templateDirectory = this.getTemplateDirectory();
+
+		for (File file : templateDirectory.listFiles()) {
+			if (file.isFile() && file.getName().contains("html")) {
+				logger.info("Preparing to print: " + file.getAbsolutePath());
+				templates.add(new File(file.getAbsolutePath()));
+			}
+		}
+		return templates;
+	}
+
+	private File getTemplateDirectory() {
+		ClassLoader classLoader = getClass().getClassLoader();
+		return new File(classLoader.getResource("templates/").getFile());
+	}
+
 }

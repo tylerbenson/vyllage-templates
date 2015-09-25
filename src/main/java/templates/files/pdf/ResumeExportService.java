@@ -1,6 +1,7 @@
 package templates.files.pdf;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -17,13 +18,13 @@ public class ResumeExportService {
 	private final Logger logger = Logger.getLogger(ResumeExportService.class
 			.getName());
 
-	public ByteArrayOutputStream generatePDFDocument(String string)
+	public ByteArrayOutputStream generatePDFDocument(File file)
 			throws DocumentException {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 
 		try {
 
-			ITextRenderer renderer = preparePDF(string);
+			ITextRenderer renderer = preparePDF(file);
 			renderer.createPDF(out);
 			renderer.finishPDF();
 
@@ -36,10 +37,10 @@ public class ResumeExportService {
 
 	}
 
-	protected ITextRenderer preparePDF(String file) throws IOException {
+	protected ITextRenderer preparePDF(File file) throws IOException {
 		ITextRenderer renderer = new ITextRenderer();
-		renderer.setDocumentFromString(file);
-		// renderer.setDocument(file);
+		// renderer.setDocumentFromString(file);
+		renderer.setDocument(file);
 
 		PackageUserAgentCallback callback = new PackageUserAgentCallback(
 				renderer.getOutputDevice(), Resource.class);
