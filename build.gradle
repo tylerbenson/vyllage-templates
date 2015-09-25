@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+mainClassName = 'templates.Application'
+
+jar { baseName = 'templates' }
+
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+dependencies {
+
+	//https://java.net/projects/pdf-renderer
+	compile 'org.swinglabs:pdf-renderer:1.0.5'
+
+	compile 'org.apache.commons:commons-lang3:3.3.2'
+	compile 'org.thymeleaf:thymeleaf:2.1.4.RELEASE'
+    compile 'org.thymeleaf.extras:thymeleaf-extras-java8time:2.1.0.RELEASE'
+
+	compile 'org.xhtmlrenderer:flying-saucer-core:9.0.7'
+	compile 'org.xhtmlrenderer:flying-saucer-pdf:9.0.7'
+
+	compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.5.4'
+	compile "org.projectlombok:lombok:1.16.4"
+
+}
