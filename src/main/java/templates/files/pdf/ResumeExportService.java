@@ -12,7 +12,6 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import com.lowagie.text.DocumentException;
 
-// @Service
 public class ResumeExportService {
 
 	private final Logger logger = Logger.getLogger(ResumeExportService.class
