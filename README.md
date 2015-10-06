@@ -7,4 +7,4 @@
 ./gradle run --continuous
 ```
 
-View the resulting templates in `build/templates/`.
+View the resulting documents in `build/documents/`.

@@ -19,7 +19,7 @@ public class Application {
 
 	public static void main(String... args) throws InterruptedException,
 			DocumentException, IOException {
-		new File("build/templates").mkdirs();
+		new File("build/documents").mkdirs();
 
 		Application app = new Application();
 
@@ -28,17 +28,17 @@ public class Application {
 		List<File> templates = app.getTemplates();
 		System.out.println("Generating " + templates.size() + " PDFs");
 
-		// Iterate through each templates/*.html file on the classpath.
+		// Iterate through each documents/*.html file on the classpath.
 		for (File file : templates) {
 
 			// pass that in as the template to template service.
 			ByteArrayOutputStream pdfDocument = exportService
 					.generatePDFDocument(file);
 
-			OutputStream outputStream = new FileOutputStream("build/templates/"
+			OutputStream outputStream = new FileOutputStream("build/documents/"
 					+ file.getName().replace("html", "pdf"));
 
-			// write resulting bytes to file in build/templates
+			// write resulting bytes to file in build/documents
 			pdfDocument.writeTo(outputStream);
 		}
 
@@ -61,7 +61,7 @@ public class Application {
 
 	private File getTemplateDirectory() {
 		ClassLoader classLoader = getClass().getClassLoader();
-		File templateDir = new File("build/resources/main/templates");
+		File templateDir = new File("build/resources/main/documents");
 		if (!templateDir.exists())
 			throw new RuntimeException("template dir not found");
 		if (templateDir.listFiles().length == 0)
