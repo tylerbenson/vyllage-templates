@@ -4,7 +4,7 @@ apply plugin: 'application'
 
 mainClassName = 'templates.Application'
 
-jar { baseName = 'templates' }
+//jar { baseName = 'templates' }
 
 repositories {
 	mavenCentral()

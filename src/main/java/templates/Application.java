@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import templates.files.pdf.ResumeExportService;
 
@@ -15,27 +14,31 @@ import com.lowagie.text.DocumentException;
 
 public class Application {
 
-	private static Logger logger = Logger
-			.getLogger(Application.class.getName());
+	// private static Logger logger = Logger
+	// .getLogger(Application.class.getName());
 
 	public static void main(String... args) throws InterruptedException,
 			DocumentException, IOException {
+		new File("build/documents").mkdirs();
 
 		Application app = new Application();
 
 		ResumeExportService exportService = new ResumeExportService();
 
-		// Iterate through each templates/*.html file on the classpath.
-		for (File file : app.getTemplates()) {
+		List<File> templates = app.getTemplates();
+		System.out.println("Generating " + templates.size() + " PDFs");
+
+		// Iterate through each documents/*.html file on the classpath.
+		for (File file : templates) {
 
 			// pass that in as the template to template service.
 			ByteArrayOutputStream pdfDocument = exportService
 					.generatePDFDocument(file);
 
-			OutputStream outputStream = new FileOutputStream(file.getName()
-					.replace("html", "pdf"));
+			OutputStream outputStream = new FileOutputStream("build/documents/"
+					+ file.getName().replace("html", "pdf"));
 
-			// write resulting bytes to file in build/templates
+			// write resulting bytes to file in build/documents
 			pdfDocument.writeTo(outputStream);
 		}
 
@@ -46,8 +49,10 @@ public class Application {
 		File templateDirectory = this.getTemplateDirectory();
 
 		for (File file : templateDirectory.listFiles()) {
+			System.out.println("Analyzing: " + file.getAbsolutePath());
 			if (file.isFile() && file.getName().contains("html")) {
-				logger.info("Preparing to print: " + file.getAbsolutePath());
+				System.out.println("Preparing to print: "
+						+ file.getAbsolutePath());
 				templates.add(new File(file.getAbsolutePath()));
 			}
 		}
@@ -56,7 +61,12 @@ public class Application {
 
 	private File getTemplateDirectory() {
 		ClassLoader classLoader = getClass().getClassLoader();
-		return new File(classLoader.getResource("templates/").getFile());
+		File templateDir = new File("build/resources/main/documents");
+		if (!templateDir.exists())
+			throw new RuntimeException("template dir not found");
+		if (templateDir.listFiles().length == 0)
+			throw new RuntimeException("template dir is empty");
+		return templateDir;
 	}
 
 }

@@ -18,7 +18,7 @@ import com.lowagie.text.Image;
 
 public class PackageUserAgentCallback extends ITextUserAgent {
 
-	private static final String DOCUMENTS_IMAGES_BLANK_PNG = "/templates/images/blank.png";
+	private static final String DOCUMENTS_IMAGES_BLANK_PNG = "/documents/images/blank.png";
 
 	private static Logger logger = Logger
 			.getLogger(PackageUserAgentCallback.class.getName());
