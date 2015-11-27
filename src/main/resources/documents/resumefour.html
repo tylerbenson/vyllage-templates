@@ -51,6 +51,52 @@ body {
 	display: inline-block;
 	margin: 0;
 }*/
+.header {
+	font-family: "Helvetica", "Arial", sans-serif;
+	padding-bottom: 8pt;
+	text-align: left;
+	background-color: #34495e;
+	padding: 20px 30px 15px 15px;
+	width: 100%;
+}
+
+
+
+.info {
+	float: left;
+	width: 62%;
+}
+
+.info em {
+	color: #fff;
+	font-style: normal;
+	font-size: 15px;
+	text-transform: uppercase;
+}
+
+.info p {
+	margin-top: 5pt;
+}
+
+.contact {
+	float: left;
+	width: 38%;
+	margin-top: -10px;
+}
+
+.contact div {
+	clear: both;
+	margin: 8px 0;
+}
+
+.contact img {
+	margin-right: 15px;
+}
+
+.contact p {
+	display: inline-block;
+	margin: 0;
+}
 
 .sections {
 	clear: both;
@@ -172,11 +218,6 @@ li {
 }
 
 
-
-
-
-
-
 .content-single {
 	position: relative;
 	padding-left: 25px;
@@ -204,7 +245,7 @@ li {
 .main-content {
 	position: relative;
 	background-color: #fff;
-	padding: 20px;
+	padding: 10px;
 	width: 100%;
 	display: block;
 
@@ -221,8 +262,7 @@ li {
 
 .resume-one-main-cotent {
 	position: relative;
-	float: left;
-	width: 60%;
+	width: 98%;
 	padding-right: 20px;
 }
 
@@ -278,14 +318,6 @@ li {
   font-size: 24px;
 }
 
-.sidebar .section-description li {
-	display: block;
-	margin-bottom: 6px;
-}
-
-
-
-
 
 .section-single {
 	position: relative;
@@ -331,13 +363,15 @@ h5.start-end-duration {
 }
 
 .experience-section .section-single,
+.project-section .section-single,
 .education-single {
 	position: relative;
-	padding-left: 100px;
+	padding-left: 120px;
 }
 
 .experience-section .section-single .start-end-duration,
-.education-single .start-end-duration {
+.education-single .start-end-duration,
+.project-section .section-single .start-end-duration{
 	position: absolute;
 	left: 0;
 	top: 15px;
@@ -347,6 +381,10 @@ h5.start-end-duration {
 	font-family: "Helvetica", "Arial", sans-serif;
 	font-size: 11pt;
 	text-align: center;
+}
+
+.project-section .section-single .start-end-duration {
+	top: 25px;
 }
 
 .experience-section .section-single .start-end-duration span {
@@ -359,22 +397,27 @@ h5.start-end-duration {
 /* project section */
 .project-section {
 	position: relative;
-	width: 100%;
-}
-.project-section .section-title {
-	margin-bottom: 27px;
+	
 }
 
-.project-section .section-single {
-	width: 100%;
-	padding: 0 10px 0 0px;
+.project-section .block-title {
+	margin-top: 0;
 }
+
+
+
 
 /* reference section*/
 .reference-section {
 	position: relative;
 	width: 100%;
 	display: block;
+}
+
+.reference-section .section-single {
+	width: 32%;
+	float: left;
+	padding-right: 20px;
 }
 
 
@@ -385,52 +428,57 @@ h5.start-end-duration {
 }
 
 /* asde style */
-.sidebar {
-	position: relative;
-	width: 30%;
-	float: left;
-}
-
-
-.sidebar-address {
-	font-family: "Helvetica", "Arial", sans-serif;
-}
-
-.sidebar-address .content-single {
-	margin: 13px 0;
-	font-size: 15px;
-}
 
 
 /* end style for resume one */
 
 @page {
 	counter-reset: page 1;
-	margin: 40pt;
+	margin: 25pt;
 }
 </style>
 
 </head>
 
 <body>
+	<div class="header cf">
+		<div class="info">
+			<div>
+				<h1 class="username">
+					<strong th:text="${(header.firstName != null ? header.firstName : '') + ' ' + (header.middleName != null ? header.middleName : '')">Hassanur</strong>
+					<span th:text="${(header.lastName != null ? header.lastName : '')}">Rakib</span>
+				</h1>
+			</div>
+			<div>
+				<em th:text="${header.tagline}"><strong>Graphics</strong> Designer</em>
+			</div>
+			
+		</div>
+		<div class="contact">
+			<div class="content-single">
+				<img class="custom-width" src="/documents/images/marker-dark.png" />
+				<p th:text="${header.address}">121 King Street, Melbourne Victoria 3000 Australia</p>
+			</div>
+			<div class="cf content-single" th:if="${header.email != null}">
+				<img src="/documents/images/mail-icon-dark.png" />
+				<p th:text="${header.email}">mail@submail.com</p>
+			</div>
+			<div class="content-single" th:if="${header.phoneNumber != null}">
+				<img src="/documents/images/phone-icon-dark.png" />
+				<p th:text="${header.phoneNumber}">(555)1234-56789</p>
+			</div>
+			<div class="content-single" th:if="${header.website != null}">
+				<img src="/documents/images/web-icon-dark.png" />
+				<p th:text="${header.website}">www.mywebsite.com</p>
+			</div>
+		</div>
+	</div>
 	
 	<div class="main-content cf">
 		<!-- loop over the sections -->
 		
 		<div class="sections resume-one-main-cotent">
-			<div class="header">
-				<div class="info">
-					<div>
-						<h1 class="username">
-							<span th:text="${(header.firstName != null ? header.firstName : '') + ' ' + (header.middleName != null ? header.middleName : '')">Hassanur</span>
-							<span th:text="${(header.lastName != null ? header.lastName : '')}">Rakib</span>
-						</h1>
-					</div>
-					<div>
-						<em th:text="${header.tagline}">Graphics Designer</em>
-					</div>
-				</div>
-			</div>
+			
 			
 			<th:block th:each="section : ${sections}">
 				<th:block th:switch="${section.type}">
@@ -492,6 +540,36 @@ h5.start-end-duration {
 							</div>
 						</div>
 					</th:block>
+
+					<th:block th:case="'ProjectsSection'">
+						<div class="project-section">
+							<h2 class="section-title" th:text="${section.title}">Projects</h2>
+							<div class="section-single">
+								<h3 class="block-title" th:text="${section.projectTitle}">Save Humanity</h3>
+								<h5 class="start-end-duration" th:if="${section.projectDate != null }"
+									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">(July 2013 - July 2014)</h5>
+								<h4 class="project-position" th:text="${section.role}">Team Leader</h4>
+								
+								
+								
+								<!-- <h5 class="location" th:text="${section.author}"></h5> -->
+								<p class="section-description" th:text="${section.projectDescription}">These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best.</p>
+								
+							</div>
+
+							<div class="section-single">
+								<h3 class="block-title" th:text="${section.projectTitle}">Save Humanity</h3>
+								<h5 class="start-end-duration" th:if="${section.projectDate != null }"
+									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">(July 2013 - July 2014)</h5>
+								<h4 class="project-position" th:text="${section.role}">Team Leader</h4>
+								
+								
+								
+								<p class="section-description" th:text="${section.projectDescription}">hese cases are perfectly simple and easy to distinguish. In a free hour, when our power of .</p>
+								
+							</div>
+						</div>
+					</th:block>
 			
 					
 
@@ -511,68 +589,6 @@ h5.start-end-duration {
 						</div>
 					</th:block>
 
-					
-				</th:block>
-			</th:block>
-		</div>
-
-		<div class="sidebar">
-
-			<div class="sidebar-address">
-				<div class="content-single">
-					<img class="custom-width" src="/documents/images/marker-dark.png" />
-					<p th:text="${header.address}">121 King Street, Melbourne Victoria 3000 Australia</p>
-				</div>
-				<div class="cf content-single" th:if="${header.email != null}">
-					<img class="mail-icon" src="/documents/images/mail-icon-dark.png" />
-					<p th:text="${header.email}">mail@submail.com</p>
-				</div>
-				<div class="content-single" th:if="${header.phoneNumber != null}">
-					<img src="/documents/images/phone-icon-dark.png" />
-					<p th:text="${header.phoneNumber}">(555)1234-56789</p>
-				</div>
-				<div class="content-single" th:if="${header.website != null}">
-					<img src="/documents/images/web-icon-dark.png" />
-					<p th:text="${header.website}">www.mywebsite.com</p>
-				</div>
-			</div>
-	
-			<th:block th:each="section : ${sections}">
-				<th:block th:switch="${section.type}">
-					<th:block th:case="'ProjectsSection'">
-						<div class="project-section">
-							<h2 class="section-title" th:text="${section.title}">Projects</h2>
-							<div class="section-single">
-								<h3 class="block-title" th:text="${section.projectTitle}">Save Humanity</h3>
-								<h4 class="project-position" th:text="${section.role}">Team Leader</h4>
-								<h5 class="start-end-duration" th:if="${section.projectDate != null }"
-									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">(July 2013 - July 2014)</h5>
-								
-								
-								<!-- <h5 class="location" th:text="${section.author}"></h5> -->
-								<p class="section-description" th:text="${section.projectDescription}">These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best.</p>
-								<div class="subsection">
-									<h4 class="role" th:text="${section.role}"></h4>
-									<p th:text="${section.roleDescription}"></p>
-								</div>
-							</div>
-
-							<div class="section-single">
-								<h3 class="block-title" th:text="${section.projectTitle}">Save Humanity</h3>
-								<h4 class="project-position" th:text="${section.role}">Team Leader</h4>
-								<h5 class="start-end-duration" th:if="${section.projectDate != null }"
-									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">(July 2013 - July 2014)</h5>
-								
-								
-								<p class="section-description" th:text="${section.projectDescription}">hese cases are perfectly simple and easy to distinguish. In a free hour, when our power of .</p>
-								<div class="subsection">
-									<h4 class="role" th:text="${section.role}"></h4>
-									<p th:text="${section.roleDescription}"></p>
-								</div>
-							</div>
-						</div>
-					</th:block>
-
 					<th:block th:case="'SkillsSection'">
 						
 						<div class="section-single">
@@ -587,6 +603,7 @@ h5.start-end-duration {
 							</p>
 						</div>
 					</th:block>
+
 
 					<th:block th:case="'PersonalReferencesSection'">
 						<h2 class="section-title" th:text="${section.title}">References</h2>
@@ -611,10 +628,10 @@ h5.start-end-duration {
 							</div>
 						</div>
 					</th:block>
+
+					
 				</th:block>
 			</th:block>
-
-			
 		</div>
 	</div>
 </body>

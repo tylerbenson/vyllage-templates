@@ -140,15 +140,6 @@ h5 {
 	padding: 8pt 12pt;
 }
 
-ul {
-	margin: 8pt 0 -4pt 0;
-	padding: 0;
-	list-style-position: inside;
-}
-
-li {
-	margin: 2pt 0 0 0;
-}
 
 
 
@@ -201,15 +192,22 @@ li {
 	position: relative;
 	background-color: #efeff1;
 	padding: 30px;
+	padding-right: 60px;
 	width: 100%;
 	display: block;
 
 }
 
+.objective-section {
+	position: relative;
+	padding-right: 40px;
+	margin-bottom: 20px;
+}
+
+
 .resume-one-main-cotent {
 	position: relative;
-	float: left;
-	width: 60%;
+	width: 100%;
 	padding-right: 20px;
 }
 
@@ -221,10 +219,10 @@ li {
 	margin-bottom: 35px;
 }
 
-.section-title.mb15 { margin-bottom: 15px; }
+/*.section-title.mb15 { margin-bottom: 15px; }
 .section-title.mb10 { margin-bottom: 10px !important; }
 .section-title.mt45 { margin-top: 45px; }
-.section-title.pb15 { padding-bottom: 15px !important; }
+.section-title.pb15 { padding-bottom: 15px !important; }*/
 
 .section-single .section-title {margin-top: 0;}
 
@@ -273,18 +271,16 @@ li {
 	background-color: #e8e8e9;
 	padding: 25px 20px 25px;
 	margin-bottom: 15px;
+	margin-right: 55px;
 }
-.section-single.pb0 {padding: 15px 20px 0;}
-.section-single.pt0 {padding: 5px 20px 0;}
+
 .section-single.border-left {
 	padding-left: 25px;
 	padding-bottom: 35px;
 	border-left: 7px solid #34495e;
 }
 
-.section-single.mb0 {
-	margin-bottom: 0;
-}
+
 
 .block-title {
 	display: block;
@@ -319,27 +315,41 @@ h5.start-end-duration {
 }
 
 
-/* asde style */
-.sidebar {
+.project-section {
 	position: relative;
-	width: 30%;
-	float: left;
-	background-color: #e8e8e9;
-	border-top: 10px solid #34495e;
-	margin-top: 30px;
+	margin-bottom: 30px;	
 }
 
-.sidebar .section-title {
-	padding: 0;
-	margin: 0;
+.project-section .section-single {
+	margin-bottom: 0;
+	padding-bottom: 10px;
 }
+
+.referance-section .section-single {
+	margin-bottom: 0;
+	padding-bottom: 10px;
+}
+
+.section-single .education-single {
+	margin-bottom: 30px;
+}
+
+.section-single .education-single:last-child {
+	margin-bottom: 0;
+}
+
+
+/* asde style */
+
+
+
 
 
 /* end style for resume one */
 
 @page {
 	counter-reset: page 1;
-	margin: 40pt;
+	margin: 25pt;
 }
 </style>
 
@@ -386,14 +396,14 @@ h5.start-end-duration {
 
 					<th:block th:case="'SummarySection'">	
 						<div class="objective-section">
-							<h2 class="section-title mb15" th:text="${section.title}">Objectives</h2>
-							<p class="section-description pt0" th:text="${section.description}">I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account.</p>
+							<h2 class="section-title " th:text="${section.title}">Objectives</h2>
+							<p class="section-description" th:text="${section.description}">I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account.</p>
 						</div>
 						
 					</th:block>
 
 					<th:block th:case="'JobExperienceSection'">
-						<h2 class="section-title mt45" th:text="${section.title}">Experience</h2>
+						<h2 class="section-title" th:text="${section.title}">Experience</h2>
 						<div class="section-single border-left">
 							<h3 class="block-title" th:text="${section.organizationName}">ABC Engineers</h3>
 							<h4 class="project-position" th:text="${section.role}">Lead UI Designer</h4>
@@ -420,50 +430,64 @@ h5.start-end-duration {
 
 					
 					<th:block th:case="'ProjectsSection'">
-						<h2 class="section-title mt45" th:text="${section.title}">Projects</h2>
-						<div class="section-single pb0 mb0">
+						<div class="project-section cf">
+							<h2 class="section-title mt45" th:text="${section.title}">Projects</h2>
+							<div class="section-single">
+								<h3 class="block-title" th:text="${section.projectTitle}">Save Humanity</h3>
+								<h4 class="project-position" th:text="${section.role}">Team Leader</h4>
+								<h5 class="start-end-duration" th:if="${section.projectDate != null }"
+									th:text="${#temporals.format(section.projectDate, 'MMM yyyy')}">(July 2015)</h5>
 
-							<h3 class="block-title" th:text="${section.projectTitle}">Save Humanity</h3>
-							<h4 class="project-position" th:text="${section.role}">Team Leader</h4>
-							<h5 class="start-end-duration" th:if="${section.projectDate != null }"
-								th:text="${#temporals.format(section.projectDate, 'MMM yyyy')}">(July 2015)</h5>
-
-							<!-- <h5 class="location" th:text="${section.author}"></h5> -->
-							<p class="section-description" th:text="${section.projectDescription}">I must explain to you how all this mistaken idea</p>
-							<div class="subsection">
-								<h4 class="role" th:text="${section.role}"></h4>
-								<p th:text="${section.roleDescription}"></p>
+								<!-- <h5 class="location" th:text="${section.author}"></h5> -->
+								<p class="section-description" th:text="${section.projectDescription}">I must explain to you how all this mistaken idea</p>
+								
 							</div>
-						</div>
 
-						<div class="section-single pb0 mb0">
+							<div class="section-single">
+								<h3 class="block-title" th:text="${section.projectTitle}">Battlefield Headline</h3>
+								<h4 class="project-position" th:text="${section.role}">Team Leader</h4>
+								<h5 class="start-end-duration" th:if="${section.projectDate != null }"
+									th:text="${#temporals.format(section.projectDate, 'MMM yyyy')}">(July 2015)</h5>
 
-							<h3 class="block-title" th:text="${section.projectTitle}">Battlefield Headline</h3>
-							<h4 class="project-position" th:text="${section.role}">Team Leader</h4>
-							<h5 class="start-end-duration" th:if="${section.projectDate != null }"
-								th:text="${#temporals.format(section.projectDate, 'MMM yyyy')}">(July 2015)</h5>
-
-							<!-- <h5 class="location" th:text="${section.author}"></h5> -->
-							<p class="section-description" th:text="${section.projectDescription}">I must explain to you how all this mistaken idea</p>
-							<div class="subsection">
-								<h4 class="role" th:text="${section.role}"></h4>
-								<p th:text="${section.roleDescription}"></p>
+								<!-- <h5 class="location" th:text="${section.author}"></h5> -->
+								<p class="section-description" th:text="${section.projectDescription}">I must explain to you how all this mistaken idea</p>
+								
 							</div>
 						</div>
 						
 					</th:block>
 
-				</th:block>
-			</th:block>
-		</div>
+					<th:block th:case="'EducationSection'">
+						<h2 class="section-title" th:text="${section.title}">Education</h2>
+						<div class="section-single">
+							<div class="education-single">
+								<h3 class="block-title small-font" th:text="${section.role}">B.Sc(Hons) CS</h3>
+								<h5 class="start-end-duration" th:if="${section.startDate != null }"
+									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">(2010
+									- 2014)</h5>
+								<h5 class="location" th:text="${section.location}"></h5>
+								<p class="section-description" th:text="${section.organizationName}">Khulna University, Khulna Bangladesh </p>
 
-		<div class="sidebar">
-			<th:block th:each="section : ${sections}">
-				<th:block th:switch="${section.type}">
-					
+							</div>
+
+							<div class="education-single">
+								<h3 class="block-title small-font" th:text="${section.role}">B.Sc(Hons) CS</h3>
+								<h5 class="start-end-duration" th:if="${section.startDate != null }"
+									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">(2010
+									- 2014)</h5>
+								<h5 class="location" th:text="${section.location}"></h5>
+								<p class="section-description" th:text="${section.organizationName}">Khulna University, Khulna Bangladesh </p>
+
+								
+								
+							</div>
+						</div>
+					</th:block>
+
+
 					<th:block th:case="'SkillsSection'">
-						<div class="section-single pb0">
-							<h2 class="section-title mb15 mt0" th:text="${section.title}">Skills</h2>
+						<h2 class="section-title" th:text="${section.title}">Skills</h2>
+						<div class="section-single">
 							<p class="section-description" th:utext="${#strings.listJoin(section.tags,', ')} + ' .'">
 								<ul th:each="tag : ${section.tags}">
 									<li th:text="${tag}">Web Design</li>
@@ -475,11 +499,10 @@ h5.start-end-duration {
 						</div>
 					</th:block>
 
-					
-					
 					<th:block th:case="'CareerInterestsSection'">
-						<div class="section-single pb0">
-							<h2 class="section-title mb15 mt0" th:text="${section.title}">Interests</h2>
+						<h2 class="section-title" th:text="${section.title}">Interests</h2>
+
+						<div class="section-single">
 							<p class="section-description" th:utext="${#strings.listJoin(section.tags,', ')} + ' .'">
 								<ul th:each="tag : ${section.tags}">
 									<li th:text="${tag}">Music</li>
@@ -490,85 +513,27 @@ h5.start-end-duration {
 						
 					</th:block>
 
-					<th:block th:case="'EducationSection'">
-							
-						<div class="section-single pb0">
-							<h2 class="section-title pb15" th:text="${section.title}">Education</h2>
-							<div class="education-single">
-								<h3 class="block-title small-font" th:text="${section.role}">B.Sc(Hons) CS</h3>
-								<h5 class="start-end-duration" th:if="${section.startDate != null }"
-									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">(2010
-									- 2014)</h5>
-								<h5 class="location" th:text="${section.location}"></h5>
-								<p class="section-description" th:text="${section.organizationName}">Khulna University, Khulna Bangladesh </p>
-
-								<p th:text="${section.organizationDescription}"></p>
-								<div class="subsection">
-									<!-- <h4 class="role" th:text="${section.role}"></h4> -->
-									
-									<p th:text="${section.roleDescription}"></p>
-									<ul>
-										<th:block th:each="high : ${section.highlights}">
-											<li th:text="${high}"></li>
-										</th:block>
-									</ul>
-								</div>
-							
-								
-							</div>
-							<div class="education-single">
-								<h3 class="block-title small-font" th:text="${section.role}">B.Sc(Hons) CS</h3>
-								<h5 class="start-end-duration" th:if="${section.startDate != null }"
-									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">(2010
-									- 2014)</h5>
-								<h5 class="location" th:text="${section.location}"></h5>
-								<p class="section-description" th:text="${section.organizationName}">Khulna University, Khulna Bangladesh </p>
-
-								<p th:text="${section.organizationDescription}"></p>
-								<div class="subsection">
-									<!-- <h4 class="role" th:text="${section.role}"></h4> -->
-									
-									<p th:text="${section.roleDescription}"></p>
-									<ul>
-										<th:block th:each="high : ${section.highlights}">
-											<li th:text="${high}"></li>
-										</th:block>
-									</ul>
-								</div>
-							</div>
-						
-							
-						</div>
-
-						
-					</th:block>
-
-
-					
-
 					<th:block th:case="'PersonalReferencesSection'">
-						<div class="section-single pt0">
-							<h2 class="section-title pb15" th:text="${section.title}">References</h2>
-							<div class="" th:each="reference : ${section.references}">
-								<h3 class="block-title small-font ucase" 
-									th:text="${reference.firstName} + ' '  + ${reference.lastName} + '.'">John Smith</h3>
-								<p class="section-description" th:text="${reference.description}">Lead Desiner</p>
-								<p class="section-description" th:text="${reference.jobDescription}">Apple Inc, USA</p>
+						<h2 class="section-title" th:text="${section.title}">References</h2>
+						<div class="referance-section">
+							<div class="section-single">
+								<div class="" th:each="reference : ${section.references}">
+									<h3 class="block-title small-font ucase" 
+										th:text="${reference.firstName} + ' '  + ${reference.lastName} + '.'">John Smith</h3>
+									<p class="section-description" th:text="${reference.description}">Lead Desiner</p>
+									<p class="section-description" th:text="${reference.jobDescription}">Apple Inc, USA</p>
 
+								</div>
 							</div>
-						</div>
-						
-					</th:block>
 
-					<th:block th:case="'ProfessionalReferencesSection'">
-						<!-- <h2 th:text="${section.title}"></h2> -->
-						<div class="section-single pt0">
-							<div class="" th:each="reference : ${section.references}">
-								<h3 class="block-title small-font ucase"
-									th:text="${reference.firstName} + ' '  + ${reference.lastName} + '.'">John Smith</h3>
-								<p class="section-description" th:text="${reference.description} + '.'">Lead Desiner</p>
-								<p class="section-description" th:text="${reference.jobDescription}">Apple Inc, USA</p>
+							<div class="section-single">
+								<div class="" th:each="reference : ${section.references}">
+									<h3 class="block-title small-font ucase"
+										th:text="${reference.firstName} + ' '  + ${reference.lastName} + '.'">John Smith</h3>
+									<p class="section-description" th:text="${reference.description} + '.'">Lead Desiner</p>
+									<p class="section-description" th:text="${reference.jobDescription}">Apple Inc, USA</p>
 
+								</div>
 							</div>
 						</div>
 						

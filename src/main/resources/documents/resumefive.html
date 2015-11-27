@@ -132,7 +132,7 @@ li {
 	font-family: "Helvetica", "Arial", sans-serif;
 	text-align: left;
 	background-color: #fff;
-	padding: 30px 20px 15px;
+	padding: 20px 35px 15px 10px;
 	width: 100%;
 	position: relative;	
 }
@@ -227,7 +227,7 @@ li {
 .main-content {
 	position: relative;
 	background-color: #fff;
-	padding: 20px;
+	padding: 10px;
 	width: 100%;
 	display: block;
 
@@ -242,20 +242,19 @@ li {
 
 .resume-one-main-cotent {
 	position: relative;
-	float: left;
-	width: 70%;
-	padding-right: 20px;
-	display: inline-block;
+	width: 100%;
+	padding-right: 10px;
+	
 	margin-top: 20px;
 }
 .resume-one-main-cotent .section-title {
-	width: 39%;
+	width: 27%;
 	float: left;
 	padding-top:0;
 	margin: 0;
 }
 .resume-one-main-cotent .section-body {
-	width: 56%;
+	width: 69%;
 	float: left;
 	margin-bottom: 30px;
 }
@@ -305,10 +304,10 @@ li {
 	font-size: 14px;
 	list-style: none;
 	position: relative;
-	padding-left: 6px;
+	padding-left: 0px;
 	padding-top: 0;
 	margin-top: 0;
-	margin-right: 5px;
+	margin-right: 12px;
 	display: inline-block;
 	color: #666;
 }
@@ -423,8 +422,7 @@ h5.start-end-duration {
 /* asde style */
 .sidebar {
 	position: relative;
-	width: 25%;
-	float: left;
+	width: 100%;
 }
 
 
@@ -467,7 +465,7 @@ h5.start-end-duration {
 
 @page {
 	counter-reset: page 1;
-	margin: 40pt;
+	margin: 25pt;
 }
 </style>
 
@@ -530,7 +528,7 @@ h5.start-end-duration {
 										th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">jan 2015 - Present | <span th:if="${section.projectlocation">Khulna, Bangladesh</span></h5>
 									<h4 class="project-position" th:text="${section.role}">Lead UI Designer</h4>
 									<!-- <h5 class="location" th:text="${section.location}"></h5> -->
-									<p class="section-description" th:text="${section.organizationDescription}">I must explain to you how all this mistaken idea of denouncing pleasure and.</p>
+									<p class="section-description" th:text="${section.organizationDescription}">I must explain to you how all this mistaken idea of denouncing pleasure and.These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best</p>
 								</div>
 							</div>
 							
@@ -592,57 +590,58 @@ h5.start-end-duration {
 									</div>
 								</div>
 							</div>
+
+
 						</div>
 						
 					</th:block>
-				</th:block>
-			</th:block>
-		</div>
 
-		<div class="sidebar">
-			<th:block th:each="section : ${sections}">
-				<th:block th:switch="${section.type}">
-					
 					<th:block th:case="'EducationSection'">
 						<h2 class="section-title" th:text="${section.title}">Education</h2>
-						<div class="education-content">
-							<div class="section-single">
-								<div class="education-single">
-									<h3 class="block-title small-font" th:text="${section.role}">B.Sc(Hons) CS</h3>
-									<h5 class="start-end-duration" th:if="${section.startDate != null }"
-										th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">2010
-										- 2014</h5>
-									<h5 class="location" th:text="${section.location}"></h5>
-									<p class="section-description" th:text="${section.organizationName}">Khulna University, Khulna Bangladesh </p>
+						<div class="section-body">
+							<div class="education-content">
+								<div class="section-single">
+									<div class="education-single">
+										<h3 class="block-title small-font" th:text="${section.role}">B.Sc(Hons) CS</h3>
+										<h5 class="start-end-duration" th:if="${section.startDate != null }"
+											th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">2010
+											- 2014</h5>
+										<h5 class="location" th:text="${section.location}"></h5>
+										<p class="section-description" th:text="${section.organizationName}">Khulna University, Khulna Bangladesh </p>
 
-									
-								</div>
-								<div class="education-single">
-									<h3 class="block-title small-font" th:text="${section.role}">B.Sc(Hons) CS</h3>
-									<h5 class="start-end-duration" th:if="${section.startDate != null }"
-										th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">2010
-										- 2014</h5>
-									<h5 class="location" th:text="${section.location}"></h5>
-									<p class="section-description" th:text="${section.organizationName}">Khulna University, Khulna Bangladesh </p>
+										
+									</div>
+									<div class="education-single">
+										<h3 class="block-title small-font" th:text="${section.role}">B.Sc(Hons) CS</h3>
+										<h5 class="start-end-duration" th:if="${section.startDate != null }"
+											th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">2010
+											- 2014</h5>
+										<h5 class="location" th:text="${section.location}"></h5>
+										<p class="section-description" th:text="${section.organizationName}">Khulna University, Khulna Bangladesh </p>
 
-									
+										
+									</div>
 								</div>
 							</div>
 						</div>
+						
 						
 					</th:block>
 
 					<th:block th:case="'CareerInterestsSection'">
 						<div class="section-single">
 							<h2 class="section-title" th:text="${section.title}">Interests</h2>
-							<p class="section-description" th:utext="${#strings.listJoin(section.tags,', ')} + ' .'">
-								<ul th:each="tag : ${section.tags}">
-									<li th:text="${tag}">Web Design</li>
-									<li th:text="${tag}">Mobile Development</li>
-									<li th:text="${tag}">React</li>
-									<li th:text="${tag}">Angular</li>
-								</ul>
-							</p>
+							<div class="section-body">
+								<p class="section-description" th:utext="${#strings.listJoin(section.tags,', ')} + ' .'">
+									<ul th:each="tag : ${section.tags}">
+										<li th:text="${tag}">Web Design</li>
+										<li th:text="${tag}">Mobile Development</li>
+										<li th:text="${tag}">React</li>
+										<li th:text="${tag}">Angular</li>
+									</ul>
+								</p>
+							</div>
+							
 						</div>
 					</th:block>
 
@@ -650,22 +649,21 @@ h5.start-end-duration {
 						
 						<div class="section-single">
 							<h2 class="section-title" th:text="${section.title}">Skills</h2>
-							<p class="section-description" th:utext="${#strings.listJoin(section.tags,', ')} + ' .'">
-								<ul th:each="tag : ${section.tags}">
-									<li th:text="${tag}">Web Design</li>
-									<li th:text="${tag}">Mobile Development</li>
-									<li th:text="${tag}">React</li>
-									<li th:text="${tag}">Angular</li>
-								</ul>
-							</p>
+							<div class="section-body">
+								<p class="section-description" th:utext="${#strings.listJoin(section.tags,', ')} + ' .'">
+									<ul th:each="tag : ${section.tags}">
+										<li th:text="${tag}">Web Design</li>
+										<li th:text="${tag}">Mobile Development</li>
+										<li th:text="${tag}">React</li>
+										<li th:text="${tag}">Angular</li>
+									</ul>
+								</p>
+							</div>
+							
 						</div>
 					</th:block>
-
-					
 				</th:block>
 			</th:block>
-
-			
 		</div>
 	</div>
 	<div class="footer-address cf">
