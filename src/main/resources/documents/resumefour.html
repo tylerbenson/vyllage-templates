@@ -35,7 +35,7 @@ html {
 
 body {
 	font-family: Georgia, "Times New Roman", Times, serif;
-	font-size: 12pt;
+	font-size: 13pt;
 	line-height: 1.42857143;
 	color: #333;
 	background-color: #fff;
@@ -112,7 +112,7 @@ h1 {
 	margin: 0;
 	text-transform: uppercase;
 	color: #fff;
-	
+
 }
 
 h2 {
@@ -161,7 +161,7 @@ li {
 }*/
 
 /* *****************************
-	style added for resume one 
+	style added for resume one
 ******************************* */
 * {
   box-sizing: border-box;
@@ -178,7 +178,7 @@ li {
 	font-family: "Helvetica", "Arial", sans-serif;
 	text-align: left;
 	background-color: #fff;
-	position: relative;	
+	position: relative;
 }
 
 
@@ -267,11 +267,11 @@ li {
 }
 
 .section-title {
-	font-size: 23px;
+	font-size: 21px;
 	color: #333333;
 	font-weight: 600;
 	text-transform: uppercase;
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 	display: block;
 	width: 100%;
 }
@@ -321,13 +321,13 @@ li {
 
 .section-single {
 	position: relative;
-	padding: 10pt 0pt 0pt 0pt; 
+	padding: 10pt 0pt 0pt 0pt;
 	margin-bottom: 15px;
 }
 
 .block-title {
 	display: block;
-	font-size: 20px;
+	font-size: 18px;
 	text-transform: normal;
 	color: #2c2d2d;
 	margin:0;
@@ -397,7 +397,7 @@ h5.start-end-duration {
 /* project section */
 .project-section {
 	position: relative;
-	
+
 }
 
 .project-section .block-title {
@@ -452,7 +452,7 @@ h5.start-end-duration {
 			<div>
 				<em th:text="${header.tagline}"><strong>Graphics</strong> Designer</em>
 			</div>
-			
+
 		</div>
 		<div class="contact">
 			<div class="content-single">
@@ -473,16 +473,16 @@ h5.start-end-duration {
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="main-content cf">
 		<!-- loop over the sections -->
-		
+
 		<div class="sections resume-one-main-cotent">
-			
-			
+
+
 			<th:block th:each="section : ${sections}">
 				<th:block th:switch="${section.type}">
-					<th:block th:case="'SummarySection'">	
+					<th:block th:case="'SummarySection'">
 						<div class="objective-section-content">
 							<h2 class="section-title" th:text="${section.title}">Objectives</h2>
 							<div class="objective-section">
@@ -512,7 +512,7 @@ h5.start-end-duration {
 								<p class="section-description" th:text="${section.organizationDescription}">I must explain to you how all this mistaken idea of denouncing pleasure and.</p>
 							</div>
 						</div>
-						
+
 					</th:block>
 
 					<th:block th:case="'EducationSection'">
@@ -526,7 +526,7 @@ h5.start-end-duration {
 								<h5 class="location" th:text="${section.location}"></h5>
 								<p class="section-description" th:text="${section.organizationName}">Khulna University, Khulna Bangladesh </p>
 
-								
+
 							</div>
 							<div class="education-single">
 								<h3 class="block-title small-font" th:text="${section.role}">B.Sc(Hons) CS</h3>
@@ -536,7 +536,7 @@ h5.start-end-duration {
 								<h5 class="location" th:text="${section.location}"></h5>
 								<p class="section-description" th:text="${section.organizationName}">Khulna University, Khulna Bangladesh </p>
 
-								
+
 							</div>
 						</div>
 					</th:block>
@@ -549,12 +549,12 @@ h5.start-end-duration {
 								<h5 class="start-end-duration" th:if="${section.projectDate != null }"
 									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">(July 2013 - July 2014)</h5>
 								<h4 class="project-position" th:text="${section.role}">Team Leader</h4>
-								
-								
-								
+
+
+
 								<!-- <h5 class="location" th:text="${section.author}"></h5> -->
 								<p class="section-description" th:text="${section.projectDescription}">These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best.</p>
-								
+
 							</div>
 
 							<div class="section-single">
@@ -562,18 +562,18 @@ h5.start-end-duration {
 								<h5 class="start-end-duration" th:if="${section.projectDate != null }"
 									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">(July 2013 - July 2014)</h5>
 								<h4 class="project-position" th:text="${section.role}">Team Leader</h4>
-								
-								
-								
+
+
+
 								<p class="section-description" th:text="${section.projectDescription}">hese cases are perfectly simple and easy to distinguish. In a free hour, when our power of .</p>
-								
+
 							</div>
 						</div>
 					</th:block>
-			
-					
 
-					
+
+
+
 
 					<th:block th:case="'CareerInterestsSection'">
 						<div class="section-single">
@@ -590,7 +590,7 @@ h5.start-end-duration {
 					</th:block>
 
 					<th:block th:case="'SkillsSection'">
-						
+
 						<div class="section-single">
 							<h2 class="section-title" th:text="${section.title}">Skills</h2>
 							<p class="section-description" th:utext="${#strings.listJoin(section.tags,', ')} + ' .'">
@@ -608,10 +608,10 @@ h5.start-end-duration {
 					<th:block th:case="'PersonalReferencesSection'">
 						<h2 class="section-title" th:text="${section.title}">References</h2>
 						<div class="reference-section">
-							
+
 							<div class="section-single">
 								<div class="" th:each="reference : ${section.references}">
-									<h3 class="block-title small-font ucase" 
+									<h3 class="block-title small-font ucase"
 										th:text="${reference.firstName} + ' '  + ${reference.lastName} + '.'">John Smith</h3>
 									<p class="section-description" th:text="${reference.description}">Lead Desiner</p>
 									<p class="section-description" th:text="${reference.jobDescription}">Apple Inc, USA</p>
@@ -629,7 +629,7 @@ h5.start-end-duration {
 						</div>
 					</th:block>
 
-					
+
 				</th:block>
 			</th:block>
 		</div>
