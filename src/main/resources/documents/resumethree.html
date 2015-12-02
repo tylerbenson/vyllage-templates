@@ -156,7 +156,7 @@ li {
 }
 
 .contact {
-	width: 55%;
+	width: 58%;
 	float: left;
 
 }
@@ -214,7 +214,7 @@ li {
 .main-content {
 	position: relative;
 	background-color: #fff;
-	padding: 20px;
+	padding: 20px 40px 20px 20px;
 	width: 100%;
 	display: block;
 
@@ -231,9 +231,9 @@ li {
 
 .resume-one-main-cotent {
 	position: relative;
-	float: left;
-	width: 60%;
-	padding-right: 20px;
+
+	width: 100%;
+	padding-right: 50px;
 }
 
 .section-title {
@@ -341,38 +341,54 @@ h5.start-end-duration {
 .reference-section {
 	position: relative;
 	width: 100%;
-	display: block;
+	display: inline-block;
 }
 
 .reference-section .section-single {
 	float: left;
-	width: 45%;
-	padding-left: 10px;
+	width: 40%;
+	padding-right: 20px;
 
 }
 
 
 /* education content */
+
+.education-section {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+}
 .education-single {
 	margin-bottom: 30px;
+	width: 40%;
+	float: left;
+	padding-right: 20px;
 }
 
 /* asde style */
 .sidebar {
 	position: relative;
-	width: 30%;
-	float: left;
+	width: 100%;
 }
 
 
 .sidebar-address {
 	font-family: "Helvetica", "Arial", sans-serif;
-	padding-top: 20px;
+	width: 100%;
+	display: inline-block;
+}
+
+.sidebar-address .section-title {
+	margin-bottom: 10px;
 }
 
 .sidebar-address .content-single {
 	margin: 13px 0;
 	font-size: 15px;
+	float: left;
+	width: 35%;
+	padding-right: 20px;
 }
 
 
@@ -380,7 +396,7 @@ h5.start-end-duration {
 
 @page {
 	counter-reset: page 1;
-	margin: 40pt;
+	margin: 25pt;
 }
 </style>
 
@@ -438,19 +454,7 @@ h5.start-end-duration {
 								</div>
 							</div>
 
-							<div class="section-single">
-								<h3 class="block-title" th:text="${section.projectTitle}">Save Humanity</h3>
-								<h5 class="start-end-duration" th:if="${section.projectDate != null }"
-									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">July 2015 - Present | 
-									<span th:if="${section.projectlocation">Khulna, Bangladesh</span></h5>
-								<h4 class="project-position" th:text="${section.role}">Team Leader</h4>
-								
-								<p class="section-description" th:text="${section.projectDescription}">hese cases are perfectly simple and easy to distinguish. In a free hour, when our power of .</p>
-								<div class="subsection">
-									<h4 class="role" th:text="${section.role}"></h4>
-									<p th:text="${section.roleDescription}"></p>
-								</div>
-							</div>
+							
 
 							<div class="section-single">
 								<h3 class="block-title" th:text="${section.projectTitle}">ABC Engineer</h3>
@@ -464,6 +468,57 @@ h5.start-end-duration {
 									<h4 class="role" th:text="${section.role}"></h4>
 									<p th:text="${section.roleDescription}"></p>
 								</div>
+							</div>
+						</div>
+					</th:block>
+
+					<th:block th:case="'JobExperienceSection'">
+						<div class="experience-section">
+							<h2 class="section-title" th:text="${section.title}">Experience</h2>
+							<div class="section-single">
+								<h3 class="block-title" th:text="${section.organizationName}">ABC Engineers</h3>
+								<h5 class="start-end-duration" th:if="${section.startDate != null }"
+									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">jan 2015 - Present | <span th:if="${section.projectlocation">Khulna, Bangladesh</span></h5>
+								<h4 class="project-position" th:text="${section.role}">Lead UI Designer</h4>
+								<!-- <h5 class="location" th:text="${section.location}"></h5> -->
+								<p class="section-description" th:text="${section.organizationDescription}">I must explain to you how all this mistaken idea of denouncing pleasure and.</p>
+							</div>
+
+							<div class="section-single">
+								<h3 class="block-title" th:text="${section.organizationName}">ABC Engineers</h3>
+								<h5 class="start-end-duration" th:if="${section.startDate != null }"
+									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">jan 2015 - Present | <span th:if="${section.projectlocation">Khulna, Bangladesh</span></h5>
+								<h4 class="project-position" th:text="${section.role}">Lead UI Designer</h4>
+								<!-- <h5 class="location" th:text="${section.location}"></h5> -->
+								<p class="section-description" th:text="${section.organizationDescription}">I must explain to you how all this mistaken idea of denouncing pleasure and.</p>
+							</div>
+						</div>
+						
+					</th:block>
+
+
+					<th:block th:case="'EducationSection'">
+						<h2 class="section-title" th:text="${section.title}">Education</h2>
+						<div class="section-single education-section">
+							<div class="education-single">
+								<h3 class="block-title small-font" th:text="${section.role}">B.Sc(Hons) CS</h3>
+								<h5 class="start-end-duration" th:if="${section.startDate != null }"
+									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">2010
+									- 2014</h5>
+								<h5 class="location" th:text="${section.location}"></h5>
+								<p class="section-description" th:text="${section.organizationName}">Khulna University, Khulna Bangladesh </p>
+
+								
+							</div>
+							<div class="education-single">
+								<h3 class="block-title small-font" th:text="${section.role}">B.Sc(Hons) CS</h3>
+								<h5 class="start-end-duration" th:if="${section.startDate != null }"
+									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">2010
+									- 2014</h5>
+								<h5 class="location" th:text="${section.location}"></h5>
+								<p class="section-description" th:text="${section.organizationName}">Khulna University, Khulna Bangladesh </p>
+
+								
 							</div>
 						</div>
 					</th:block>
@@ -529,79 +584,24 @@ h5.start-end-duration {
 		</div>
 
 		<div class="sidebar">
-			<th:block th:each="section : ${sections}">
-				<th:block th:switch="${section.type}">
-					<th:block th:case="'JobExperienceSection'">
-						<div class="experience-section">
-							<h2 class="section-title" th:text="${section.title}">Experience</h2>
-							<div class="section-single">
-								<h3 class="block-title" th:text="${section.organizationName}">ABC Engineers</h3>
-								<h5 class="start-end-duration" th:if="${section.startDate != null }"
-									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">jan 2015 - Present | <span th:if="${section.projectlocation">Khulna, Bangladesh</span></h5>
-								<h4 class="project-position" th:text="${section.role}">Lead UI Designer</h4>
-								<!-- <h5 class="location" th:text="${section.location}"></h5> -->
-								<p class="section-description" th:text="${section.organizationDescription}">I must explain to you how all this mistaken idea of denouncing pleasure and.</p>
-							</div>
+			<div class="sidebar-address">
+				<h2 class="section-title" th:text="${section.title}">Address</h2>
 
-							<div class="section-single">
-								<h3 class="block-title" th:text="${section.organizationName}">ABC Engineers</h3>
-								<h5 class="start-end-duration" th:if="${section.startDate != null }"
-									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">jan 2015 - Present | <span th:if="${section.projectlocation">Khulna, Bangladesh</span></h5>
-								<h4 class="project-position" th:text="${section.role}">Lead UI Designer</h4>
-								<!-- <h5 class="location" th:text="${section.location}"></h5> -->
-								<p class="section-description" th:text="${section.organizationDescription}">I must explain to you how all this mistaken idea of denouncing pleasure and.</p>
-							</div>
-						</div>
-						
-					</th:block>
-					<th:block th:case="'EducationSection'">
-						<h2 class="section-title" th:text="${section.title}">Education</h2>
-						<div class="section-single">
-							<div class="education-single">
-								<h3 class="block-title small-font" th:text="${section.role}">B.Sc(Hons) CS</h3>
-								<h5 class="start-end-duration" th:if="${section.startDate != null }"
-									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">2010
-									- 2014</h5>
-								<h5 class="location" th:text="${section.location}"></h5>
-								<p class="section-description" th:text="${section.organizationName}">Khulna University, Khulna Bangladesh </p>
-
-								
-							</div>
-							<div class="education-single">
-								<h3 class="block-title small-font" th:text="${section.role}">B.Sc(Hons) CS</h3>
-								<h5 class="start-end-duration" th:if="${section.startDate != null }"
-									th:text="${#temporals.format(section.startDate, 'MMM yyyy') + ' - ' +  (section.endDate != null ? #temporals.format(section.endDate, 'MMM yyyy') : 'Present') }">2010
-									- 2014</h5>
-								<h5 class="location" th:text="${section.location}"></h5>
-								<p class="section-description" th:text="${section.organizationName}">Khulna University, Khulna Bangladesh </p>
-
-								
-							</div>
-						</div>
-					</th:block>
-
-					
-				</th:block>
-			</th:block>
-
-			<div class=" cf">
-				<div class="sidebar-address">
-					<div class="content-single">
-						<img class="custom-width" src="/documents/images/marker-yellow.png" />
-						<p th:text="${header.address}">121 King Street, Melbourne Victoria 3000 Australia</p>
-					</div>
-					<div class="cf content-single" th:if="${header.email != null}">
-						<img class="mail-icon" src="/documents/images/mail-icon-yellow.png" />
-						<p th:text="${header.email}">mail@submail.com</p>
-					</div>
-					<div class="content-single" th:if="${header.phoneNumber != null}">
-						<img src="/documents/images/phone-icon-yellow.png" />
-						<p th:text="${header.phoneNumber}">(555)1234-56789</p>
-					</div>
-					<div class="content-single" th:if="${header.website != null}">
-						<img src="/documents/images/web-icon-yellow.png" />
-						<p th:text="${header.website}">www.mywebsite.com</p>
-					</div>
+				<div class="content-single">
+					<img class="custom-width" src="/documents/images/marker-yellow.png" />
+					<p th:text="${header.address}">121 King Street, Melbourne Victoria 3000 Australia</p>
+				</div>
+				<div class="cf content-single" th:if="${header.email != null}">
+					<img class="mail-icon" src="/documents/images/mail-icon-yellow.png" />
+					<p th:text="${header.email}">mail@submail.com</p>
+				</div>
+				<div class="content-single" th:if="${header.phoneNumber != null}">
+					<img src="/documents/images/phone-icon-yellow.png" />
+					<p th:text="${header.phoneNumber}">(555)1234-56789</p>
+				</div>
+				<div class="content-single" th:if="${header.website != null}">
+					<img src="/documents/images/web-icon-yellow.png" />
+					<p th:text="${header.website}">www.mywebsite.com</p>
 				</div>
 			</div>
 		</div>
